@@ -4,7 +4,6 @@ boto3==1.20.27
 botocore==1.23.27
 brotlipy==0.7.0
 certifi==2021.10.8
-cffi @ file:///C:/ci/cffi_1636542074879/work
 charset-normalizer==2.0.10
 conda==4.11.0
 conda-content-trust @ file:///tmp/build/80754af9/conda-content-trust_1617045594566/work
@@ -20,7 +19,6 @@ django-on-heroku==1.1.2
 django-storages==1.12.3
 django-tinymce==3.4.0
 et-xmlfile==1.1.0
-idna @ file:///tmp/build/80754af9/idna_1637925883363/work
 jmespath==0.10.0
 lxml==4.7.1
 MarkupPy==1.14
