@@ -5,7 +5,6 @@ botocore==1.23.27
 brotlipy==0.7.0
 certifi==2021.10.8
 charset-normalizer==2.0.10
-conda==4.11.0
 defusedxml==0.7.1
 diff-match-patch==20200713
 dj-database-url==0.5.0
