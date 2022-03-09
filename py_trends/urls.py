@@ -20,5 +20,6 @@ from trends_api import views as trends_views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('trends_call/', trends_views.api_call),
+    path('twitter_call/', trends_views.tw_api_call),
     path('form/', trends_views.form)
 ]

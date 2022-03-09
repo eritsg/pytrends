@@ -1,4 +1,4 @@
-import requests, json
+import requests, json, tweepy
 from django.shortcuts import render
 from django.http import JsonResponse
 
@@ -219,6 +219,38 @@ def api_call(request):
         'analisis':busquedas,
         'interes_por_region':interes_por_region,
         'busquedas_relacionadas':busquedas_relacionadas
+    }
+    # print(busquedas)
+    return JsonResponse(response)
+
+def tw_api_call(request):
+    consumer_key        = "JOPFYmrDvgLwEtrSVCnqwwwyq"
+    consumer_secret     = "Ab0CbdtXqWZtIluE48qZaXJwJxaAdduIqtOMWYOkbVLTPQ4CNv"
+    access_token        = "1496939578208440328-66cw5MgJoGRYKQyKvvGUxNWdfrlHVt"
+    access_token_secret = "gcZRxFl5GR37faXq6S6ZmMtEqnj5V1TOCmPhsUoA4LtQy"
+
+    auth = tweepy.OAuth1UserHandler(consumer_key, consumer_secret)
+    auth.set_access_token(access_token, access_token_secret)
+
+    api = tweepy.API(auth, wait_on_rate_limit=True)
+
+    # Buscar detalles de un perfil especifico
+    # profile = api.get_user(screen_name='john5guitarist')
+
+    # Buscar codigos de país para luego obtener trends
+    # world_list = api.available_trends()
+
+    # Buscar trends de cierto codigo de país
+    trends = api.get_place_trends(116545)
+
+
+    # print (data)
+    # print(json.dumps(data._json, indent=2))
+    
+    response = {
+        'platform':'Twitter',
+        'msg': 'success',
+        'trends': trends
     }
     # print(busquedas)
     return JsonResponse(response)
