@@ -39,3 +39,4 @@ whitenoise==6.0.0
 wincertstore==0.2
 xlrd==2.0.1
 xlwt==1.3.0
+django-cors-headers==3.11.0
