@@ -113,43 +113,43 @@ def api_call(request):
         )
         
         data            = pytrends.interest_over_time()
-        # Cual fue el nivel de interes en los ultimos 6 meses
+        # Cual fue el nivel de interes en los ultimos 5 años
         mean            = round(data.mean(), 2)
         # Como se compara con el ultimo año
         avg_last_year   = round( data[kw][-52:].mean(), 2 )
-        # Como se compara el ultimo año con el primero de hace 6 meses
+        # Como se compara el ultimo año con el primero de hace 5 años
         avg_first_year  = round( data[kw][:52].mean(), 2 )
         trend_last_year = round( ( (avg_last_year/mean[kw]) - 1 ) * 100, 2)
         trend_first_year= round( ( (avg_last_year/avg_first_year) - 1 ) * 100, 2)
         
         
-        # print('El promedio en 6 meses de interés en ' + kw + ' fué de ' + str(mean[kw]) + '.')
-        busqueda.promedio_total = 'El promedio en 6 meses de interés en ' + kw + ' fué de ' + str(mean[kw]) + '.'
+        # print('El promedio en 5 años de interés en ' + kw + ' fué de ' + str(mean[kw]) + '.')
+        busqueda.promedio_total = 'El promedio en 5 años de interés en ' + kw + ' fué de ' + str(mean[kw]) + '.'
         # print('El ultimo año, el interes en ' + kw + ' en comparación a'
-        #   + ' los ultimos 6 meses ha cambiado un ' + str(trend_last_year) +'%')
-        busqueda.interes = 'El ultimo año, el interes en ' + kw + ' en comparación a' + ' los ultimos 6 meses ha cambiado un ' + str(trend_last_year) +'%'
+        #   + ' los ultimos 5 años ha cambiado un ' + str(trend_last_year) +'%')
+        busqueda.interes = 'El ultimo año, el interes en ' + kw + ' en comparación a' + ' los ultimos 5 años ha cambiado un ' + str(trend_last_year) +'%'
         
         # Tendencia estable
         if mean[kw] > 75 and abs(trend_last_year) <= 5:
-            # print('El interes por ' + kw + 'ha sido estable en los ultimos 6 meses.')
-            busqueda.estabilidad = 'El interes por ' + kw + 'ha sido estable en los ultimos 6 meses.'
+            # print('El interes por ' + kw + 'ha sido estable en los ultimos 5 años.')
+            busqueda.estabilidad = 'El interes por ' + kw + 'ha sido estable en los ultimos 5 años.'
         elif mean[kw] > 75 and trend_last_year >  5:
-            # print('El interes por ' + kw + 'ha sido estable y aumentó en los ultimos 6 meses.')
-            busqueda.estabilidad = 'El interes por ' + kw + 'ha sido estable y aumentó en los ultimos 6 meses.'
+            # print('El interes por ' + kw + 'ha sido estable y aumentó en los ultimos 5 años.')
+            busqueda.estabilidad = 'El interes por ' + kw + 'ha sido estable y aumentó en los ultimos 5 años.'
         elif mean[kw] > 75 and trend_last_year < -5:
-            # print('El interes por ' + kw + 'ha sido estable y decreció en los ultimos 6 meses.')        
-            busqueda.estabilidad = 'El interes por ' + kw + 'ha sido estable y decreció en los ultimos 6 meses.'
+            # print('El interes por ' + kw + 'ha sido estable y decreció en los ultimos 5 años.')        
+            busqueda.estabilidad = 'El interes por ' + kw + 'ha sido estable y decreció en los ultimos 5 años.'
             
         # Relativamente estable
         elif mean[kw] > 60 and abs(trend_last_year) <= 15:
-            # print('El interes por ' + kw + 'ha sido relativamente estable en los ultimos 6 meses.')
-            busqueda.estabilidad = 'El interes por ' + kw + 'ha sido relativamente estable en los ultimos 6 meses.'
+            # print('El interes por ' + kw + 'ha sido relativamente estable en los ultimos 5 años.')
+            busqueda.estabilidad = 'El interes por ' + kw + 'ha sido relativamente estable en los ultimos 5 años.'
         elif mean[kw] > 60 and trend_last_year >  15:
-            # print('El interes por ' + kw + 'ha sido relativamente estable y aumentó en los ultimos 6 meses.')        
-            busqueda.estabilidad = 'El interes por ' + kw + 'ha sido relativamente estable y aumentó en los ultimos 6 meses.'
+            # print('El interes por ' + kw + 'ha sido relativamente estable y aumentó en los ultimos 5 años.')        
+            busqueda.estabilidad = 'El interes por ' + kw + 'ha sido relativamente estable y aumentó en los ultimos 5 años.'
         elif mean[kw] > 60 and trend_last_year < -15:
-            # print('El interes por ' + kw + 'ha sido relativamente estable y decreció en los ultimos 6 meses.')        
-            busqueda.estabilidad = 'El interes por ' + kw + 'ha sido relativamente estable y decreció en los ultimos 6 meses.'
+            # print('El interes por ' + kw + 'ha sido relativamente estable y decreció en los ultimos 5 años.')        
+            busqueda.estabilidad = 'El interes por ' + kw + 'ha sido relativamente estable y decreció en los ultimos 5 años.'
         
         # Temporal
         elif mean[kw] > 20 and abs(trend_last_year) <= 15:
@@ -181,22 +181,22 @@ def api_call(request):
             # print("Esto es algo que deberia revisarse.")
             busqueda.estabilidad = "Esto es algo que deberia revisarse."
             
-        # Comparacion del ultimo año vs hace 6 meses
+        # Comparacion del ultimo año vs hace 5 años
         if avg_first_year == 0:
-            # print('Esto no existia hace 6 meses.')
-            busqueda.comparacion = 'Esto no existia hace 6 meses.'
+            # print('Esto no existia hace 5 años.')
+            busqueda.comparacion = 'Esto no existia hace 5 años.'
         elif trend_first_year > 15:
-            # print('El interes en el ultimo año ha sido bastante alto comparado a hace 6 meses.'
+            # print('El interes en el ultimo año ha sido bastante alto comparado a hace 5 años.'
                 #   + ' Se ha incrementado por ' + str(trend_first_year) + '%.')
-            busqueda.comparacion = 'El interes en el ultimo año ha sido bastante alto comparado a hace 6 meses.' + ' Se ha incrementado por ' + str(trend_first_year) + '%.'
+            busqueda.comparacion = 'El interes en el ultimo año ha sido bastante alto comparado a hace 5 años.' + ' Se ha incrementado por ' + str(trend_first_year) + '%.'
         elif trend_first_year < 15:
-            # print('El interes en el ultimo año ha sido bastante bajo comparado a hace 6 meses.'
+            # print('El interes en el ultimo año ha sido bastante bajo comparado a hace 5 años.'
                 #   + ' Se ha reducido por ' + str(trend_first_year) + '%.')
-            busqueda.comparacion = 'El interes en el ultimo año ha sido bastante bajo comparado a hace 6 meses.' + ' Se ha reducido por ' + str(trend_first_year) + '%.'
+            busqueda.comparacion = 'El interes en el ultimo año ha sido bastante bajo comparado a hace 5 años.' + ' Se ha reducido por ' + str(trend_first_year) + '%.'
         else:
-            # print('El interes en el ultimo año ha sido comparable a hace 6 meses.'
+            # print('El interes en el ultimo año ha sido comparable a hace 5 años.'
                 #   + ' Ha cambiado por ' + str(trend_first_year) + '%.')
-            busqueda.comparacion = 'El interes en el ultimo año ha sido comparable a hace 6 meses.' + ' Ha cambiado por ' + str(trend_first_year) + '%.'
+            busqueda.comparacion = 'El interes en el ultimo año ha sido comparable a hace 5 años.' + ' Ha cambiado por ' + str(trend_first_year) + '%.'
 
         nueva_busqueda = {
             "busqueda":kw,
