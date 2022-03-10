@@ -31,7 +31,7 @@ except Exception as e:
 # SECRET_KEY = 'django-insecure-5ld^kmgi-qxu^^hlmuj%cluok@sjqe^khj-3kp5k2rc4d8x7$9'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 CORS_ORIGIN_ALLOW_ALL = True
 ALLOWED_HOSTS = ['*']

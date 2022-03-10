@@ -113,11 +113,14 @@ def api_call(request):
         )
         
         data            = pytrends.interest_over_time()
-        # Cual fue el nivel de interes en los ultimos 5 años
+        # Cual fue el nivel de interes en los ultimos 12 meses
+        # Datos crudos para utilizar en grafica
+        datos_crudos = data.to_json()
+        datos_crudos = json.loads(datos_crudos)
         mean            = round(data.mean(), 2)
         # Como se compara con el ultimo año
         avg_last_year   = round( data[kw][-52:].mean(), 2 )
-        # Como se compara el ultimo año con el primero de hace 5 años
+        # Como se compara el ultimo año con el primero de hace 12 meses
         avg_first_year  = round( data[kw][:52].mean(), 2 )
         trend_last_year = round( ( (avg_last_year/mean[kw]) - 1 ) * 100, 2)
         trend_first_year= round( ( (avg_last_year/avg_first_year) - 1 ) * 100, 2)
@@ -203,7 +206,8 @@ def api_call(request):
             "promedio_total":busqueda.promedio_total,
             "interes":busqueda.interes,
             "estabilidad":busqueda.estabilidad,
-            "comparacion":busqueda.comparacion
+            "comparacion":busqueda.comparacion,
+            "datos_crudos":datos_crudos
         }
         busquedas.append(nueva_busqueda)
         # print('')
