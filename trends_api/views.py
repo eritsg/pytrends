@@ -20,6 +20,10 @@ def api_call(request):
     all_keywords = [
         'Cloralex',
     ]
+    comparacion_kw = [
+        'Cloralex',
+        'Clorox'
+    ]
     keywords     = []
     cat         = 0
     
@@ -74,10 +78,6 @@ def api_call(request):
     busquedas_relacionadas = rel_queries()
     
     def interest_per_region():
-        comparacion_kw = [
-            'Cloralex',
-            'Clorox'
-        ]
         # Compara las keyword, les pone una calificacion por estado/pais
         pytrends.build_payload(
             comparacion_kw,
@@ -215,7 +215,7 @@ def api_call(request):
         }
         busquedas.append(nueva_busqueda)
         # print('')
-    for kw in all_keywords:
+    for kw in comparacion_kw:
         keywords.append(kw)
         check_trends()
         keywords.pop()
