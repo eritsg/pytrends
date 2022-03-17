@@ -247,7 +247,7 @@ def tw_api_call(request):
     # profile = api.get_user(screen_name='john5guitarist')
 
     # Buscar codigos de país para luego obtener trends
-    world_list = api.available_trends()
+    # world_list = api.available_trends()
 
     # Buscar trends de cierto codigo de país
     trends = api.get_place_trends(116545)
@@ -271,7 +271,7 @@ def tw_api_call(request):
             'trends_acl':trends_acl,
             'trends_chi':trends_chi,
         },
-        'world_list': world_list
+        # 'world_list': world_list
     }
     # print(busquedas)
     return JsonResponse(response)
