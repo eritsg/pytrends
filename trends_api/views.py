@@ -27,7 +27,8 @@ def api_call(request):
     keywords     = []
     cat         = 0
     
-    countries = ['mexico','united_states']
+    countries = ['mexico']
+    
     trending_topics = []
     
     def trending_searches(country):
@@ -246,10 +247,14 @@ def tw_api_call(request):
     # profile = api.get_user(screen_name='john5guitarist')
 
     # Buscar codigos de país para luego obtener trends
-    # world_list = api.available_trends()
+    world_list = api.available_trends()
 
     # Buscar trends de cierto codigo de país
     trends = api.get_place_trends(116545)
+    trends_mty = api.get_place_trends(134047)
+    trends_gdl = api.get_place_trends(124162)
+    trends_acl = api.get_place_trends(111579)
+    trends_chi = api.get_place_trends(115958)
 
 
     # print (data)
@@ -258,7 +263,15 @@ def tw_api_call(request):
     response = {
         'platform':'Twitter',
         'msg': 'success',
-        'trends': trends
+        'trends': trends,
+        'trends_principales_ciudades':{
+            'trends_cdmx':trends,
+            'trends_mty':trends_mty,
+            'trends_gdl':trends_gdl,
+            'trends_acl':trends_acl,
+            'trends_chi':trends_chi,
+        },
+        'world_list': world_list
     }
     # print(busquedas)
     return JsonResponse(response)
