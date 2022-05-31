@@ -16,7 +16,7 @@ def api_call(request, variable_set):
 
     current_date = datetime.datetime.today().strftime("%Y-%m-%d %H:%M:%S")
     # Leyendo el archivo
-    f = open('google_response.json', 'r')
+    f = open(f'google_response_set_{variable_set}.json', 'r')
     # Extrayendo el json
     json_file = json.loads(f.read())
     json_file_datetime = json_file['captured_time']
@@ -254,7 +254,7 @@ def api_call(request, variable_set):
             'busquedas_relacionadas':busquedas_relacionadas
         }
         # print(busquedas)
-        f = open('google_response.json', 'w')
+        f = open(f'google_response_set_{variable_set}.json', 'w')
         f.write(json.dumps(response))
         f.close()
     else:
