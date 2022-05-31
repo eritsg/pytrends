@@ -33,7 +33,7 @@ except Exception as e:
 DEBUG = False
 
 # Custom ENV Variables
-MAX_TIME = 1
+MAX_TIME = 5
 
 
 CORS_ORIGIN_ALLOW_ALL = True
