@@ -38,30 +38,11 @@ def api_call(request, variable_set):
         busquedas = []
         
         pytrends    = TrendReq(hl='es-MX')
+
+        set_elegido = switch(variable_set)
+        all_keywords = set_elegido['keywords']
+        comparacion_kw = set_elegido['keywords']
         
-        # all_keywords = [
-        #     'Cloralex',
-        # ]
-        # all_keywords = [
-        #     'Suavizante Ensueño',
-        #     'Suavitel'
-        # ]
-        all_keywords = [
-            'Pinol',
-            'Fabuloso'
-        ]
-        # comparacion_kw = [
-        #     'Cloralex',
-        #     'Clorox'
-        # ]
-        # comparacion_kw = [
-        #     'Suavizante Ensueño',
-        #     'Suavitel'
-        # ]   
-        comparacion_kw = [
-            'Pinol',
-            'Fabuloso'
-        ]        
         keywords     = []
         cat         = 0
         
