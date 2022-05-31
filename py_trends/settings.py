@@ -29,9 +29,12 @@ except Exception as e:
 
 # SECURITY WARNING: keep the secret key used in production secret!
 # SECRET_KEY = 'django-insecure-5ld^kmgi-qxu^^hlmuj%cluok@sjqe^khj-3kp5k2rc4d8x7$9'
-
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
+
+# Custom ENV Variables
+MAX_TIME = 1
+
 
 CORS_ORIGIN_ALLOW_ALL = True
 ALLOWED_HOSTS = ['*']
