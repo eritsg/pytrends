@@ -11,6 +11,9 @@ def form(request):
     return render(request, 'form.html')
 
 def api_call(request, variable_set):
+    
+    set_elegido = switch(variable_set)['keywords']
+
     current_date = datetime.datetime.today().strftime("%Y-%m-%d %H:%M:%S")
     # Leyendo el archivo
     f = open('google_response.json', 'r')
@@ -39,10 +42,8 @@ def api_call(request, variable_set):
         
         pytrends    = TrendReq(hl='es-MX')
 
-        set_elegido = switch(variable_set)
-        all_keywords = set_elegido['keywords']
-        comparacion_kw = set_elegido['keywords']
-        
+        all_keywords = set_elegido
+        comparacion_kw = set_elegido
         keywords     = []
         cat         = 0
         
@@ -326,9 +327,9 @@ def tw_api_call(request):
 
 def switch(opt):
         options = {
-            "set1":set1(),
-            "set2":set2(),
-            "set3":set3()
+            1:set1(),
+            2:set2(),
+            3:set3()
         }
         return options.get(opt, "Ignore")
 
